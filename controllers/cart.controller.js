@@ -5,7 +5,7 @@ const Drug = require("../models/Drug.model");
 module.exports.cartController = {
   postCart: async (req, res) => {
     try {
-      const postCart = Cart.create({
+      const postCart = await Cart.create({
         user: req.body.user,
       });
       res.json(postCart);

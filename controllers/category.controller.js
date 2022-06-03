@@ -14,7 +14,7 @@ module.exports.categoryController = {
   },
   patchCategory: async (req, res) => {
     try {
-      const patchCategory = Category.findByIdAndUpdate(req.params.id, {
+      const patchCategory = await Category.findByIdAndUpdate(req.params.id, {
         name: req.body.name,
         description: req.body.description,
       })
@@ -25,7 +25,7 @@ module.exports.categoryController = {
   },
   getCategory: async (req, res) => {
     try {
-        const getCategory = Category.find()
+        const getCategory = await Category.find()
         res.json(getCategory)
     } catch (error) {
         res.json(error)
@@ -33,7 +33,7 @@ module.exports.categoryController = {
   },
   getCategoryById: async (req, res) => {
     try {
-      const getCategoryById = Category.findById(req.params.id);
+      const getCategoryById = await Category.findById(req.params.id);
       res.json(getCategoryById);
     } catch (error) {
       res.json(error);
@@ -41,7 +41,7 @@ module.exports.categoryController = {
   },
   deleteCategory: async (req, res) => {
     try {
-      const deleteCategory = Category.findByIdAndRemove(req.params.id)
+      const deleteCategory = await Category.findByIdAndRemove(req.params.id)
       res.json(deleteCategory)
     } catch (error) {
       res.json(error)

@@ -12,25 +12,26 @@ module.exports.userController = {
       await Cart.create({
         user: postUser._id,
       });
-      res.json(postUser);
+      res.json('Пользователь добавлен');
     } catch (error) {
       res.json(error);
     }
   },
   patchUser: async (req, res) => {
     try {
-      const patchUser = User.findByIdAndUpdate(req.params.id, {
+      const patchUser = await User.findByIdAndUpdate(req.params.id, {
         name: req.body.name,
         cash: req.body.cash,
         recipe: req.body.recipe,
       });
+      res.json('Пользователь изменен')
     } catch (error) {
       res.json(error);
     }
   },
   getUser: async (req, res) => {
     try {
-      const getUser = User.find();
+      const getUser = await User.find();
       res.json(getUser);
     } catch (error) {
       res.json(error);
@@ -38,7 +39,7 @@ module.exports.userController = {
   },
   getUserById: async (req, res) => {
     try {
-      const getUserById = User.findById(req.params.id);
+      const getUserById = await User.findById(req.params.id);
       res.json(getUSerById);
     } catch (error) {
       res.json(error);
@@ -46,7 +47,8 @@ module.exports.userController = {
   },
   deleteUser: async (req, res) => {
     try {
-      const deleteUser = User.findByIdAndRemove(req.params.id);
+      const deleteUser = await User.findByIdAndRemove(req.params.id);
+      res.json('Пользователь удален')
     } catch (error) {
       res.json(error);
     }

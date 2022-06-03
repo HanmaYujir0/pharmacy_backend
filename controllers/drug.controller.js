@@ -16,7 +16,7 @@ module.exports.drugController = {
   },
   patchDrug: async (req, res) => {
     try {
-      const patchDrug = Drug.findByIdAndUpdate(req.params.id, {
+      const patchDrug = await Drug.findByIdAndUpdate(req.params.id, {
         name: req.body.name,
         cash: req.body.cash,
         drugCat: req.body.drugCat,
@@ -29,7 +29,7 @@ module.exports.drugController = {
   },
   getDrug: async (req, res) => {
     try {
-        const getDrug = Drug.find()
+        const getDrug = await Drug.find()
         res.json(getDrug)
     } catch (error) {
         res.json(error)
@@ -37,7 +37,7 @@ module.exports.drugController = {
   },
   getDrugById: async (req, res) => {
     try {
-      const getDrugById = Drug.findById(req.params.id);
+      const getDrugById = await Drug.findById(req.params.id);
       res.json(getDrugById);
     } catch (error) {
       res.json(error);
@@ -45,7 +45,7 @@ module.exports.drugController = {
   },
   getDrugByCat: async (req, res) => {
     try {
-      const getDrugByCat = Drug.findById({drugCat: req.params.id});
+      const getDrugByCat = await Drug.findById({drugCat: req.params.id});
       res.json(getDrugByCat);
     } catch (error) {
       res.json(error);
@@ -53,7 +53,7 @@ module.exports.drugController = {
   },
   deleteDrug: async (req, res) => {
     try {
-      const deleteDrug = Drug.findByIdAndRemove(req.params.id)
+      const deleteDrug = await Drug.findByIdAndRemove(req.params.id)
       res.json(deleteDrug)
     } catch (error) {
       res.json(error)
